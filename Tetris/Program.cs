@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Tetris
@@ -53,15 +55,28 @@ namespace Tetris
         //State
         static int Score = 0;
         static int Frame = 0;
+        static int HighScore = 0;
         static int FramesToMoveFigure = 20;
         static int CurrentFigureRow = 0;
         static int CurrentFigureCol = 0;
-        static bool[,] CurrentFigure = null; // TODO: Random
+        static bool[,] CurrentFigure = null;
         static Random Random = new Random();
         static bool[,] TetrisField = new bool[TetrisRows, TetrisCols];
+        static string ScoresFileName = "scores.txt";
+        
 
         static void Main(string[] args)
         {
+            if (File.Exists(ScoresFileName))
+            {
+                var allScores = File.ReadAllLines(ScoresFileName);
+                foreach (var score in allScores)
+                {
+                    var match = Regex.Match(score, @" => (?<score>[0-9]+)");
+                    HighScore = Math.Max(HighScore, int.Parse(match.Groups["score"].Value));
+                }
+            }
+
             Console.Title = "Tetris v1.0";
             Console.CursorVisible = false;
             Console.SetWindowSize(ConsoleCols, ConsoleRows);
@@ -101,7 +116,6 @@ namespace Tetris
                           Frame = 1;
                           Score++;
                           CurrentFigureRow++;
-                          // TODO: Move current figure down
                       }                    
                 }
 
@@ -117,7 +131,23 @@ namespace Tetris
                     CurrentFigure = TetrisFigures[Random.Next(0, TetrisFigures.Count)];
                     CurrentFigureRow = 0;
                     CurrentFigureCol = 0;
-                  //CheckForFullLines();
+                    // TODO: CheckForFullLines();
+                    if (Collision())
+                    {
+                        File.AppendAllLines(ScoresFileName, new List<string>
+                        {
+                            $"[{DateTime.Now.ToString()}] {Environment.UserName} => {Score}"
+                        });
+                        var scoreAsString = Score.ToString();
+                        scoreAsString += new string(' ', 7 - scoreAsString.Length);
+                        Write("╔═════════╗", 5, 5);
+                        Write("║ Game    ║", 6, 5);
+                        Write("║   over! ║", 7, 5);
+                        Write($"║ {scoreAsString} ║", 8, 5);
+                        Write("╚═════════╝", 9, 5);
+                        Thread.Sleep(1000);
+                        return;
+                    }
                 }
 
                 // Redraw UI
@@ -161,7 +191,6 @@ namespace Tetris
 
         static bool Collision()
         {
-            // TODO: Collide with other figures
             if (CurrentFigureRow + CurrentFigure.GetLength(0) == TetrisRows)
             {
                 return true;
@@ -196,15 +225,24 @@ namespace Tetris
 
         static void DrawInfo()
         {
+            if (Score > HighScore)
+            {
+                HighScore = Score;
+            }
             Write("Score:", 1, 3 + TetrisCols);
             Write(Score.ToString(), 2, 3 + TetrisCols);
-            Write("Frame:", 4, 3 + TetrisCols);
-            Write(Frame.ToString(), 5, 3 + TetrisCols);
-            Write("Position:", 7, 3 + TetrisCols);
-            Write($"{CurrentFigureRow}, {CurrentFigureCol}", 8, 3 + TetrisCols);
-            Write("Keys:", 10, 3 + TetrisCols);
-            Write("    ^", 12, 3 + TetrisCols);
-            Write("  < v >", 13, 3 + TetrisCols);
+
+            Write("Best:", 4, 3 + TetrisCols);
+            Write(HighScore.ToString(), 5, 3 + TetrisCols);
+
+            Write("Frame:", 7, 3 + TetrisCols);
+            Write(Frame.ToString(), 8, 3 + TetrisCols);
+
+            Write("Position:", 10, 3 + TetrisCols);
+            Write($"{CurrentFigureRow}, {CurrentFigureCol}", 11, 3 + TetrisCols);
+            Write("Keys:", 13, 3 + TetrisCols);
+            Write("    ^", 15, 3 + TetrisCols);
+            Write("  < v >", 16, 3 + TetrisCols);
         }
 
         static void DrawBorder()
