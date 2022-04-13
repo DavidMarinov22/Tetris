@@ -14,39 +14,39 @@ namespace Tetris
         static int ConsoleCols = 1 + TetrisCols + 1 + InfoCols + 1;
         static List<bool[,]> TetrisFigures = new List<bool[,]>()
             {
-                new bool[,] //----
+                new bool[,] // I
                 {
-                    { true, true, true, true }
+                    { true, true, true, true }  // - - - - 
                 },
-                new bool[,] //O
+                new bool[,] // O
                 {
-                    { true, true },
-                    { true, true }
+                    { true, true },    // - -
+                    { true, true }     // - - 
                 },
-                new bool[,] //T
+                new bool[,] // T
                 {
-                    { false, true, false },
-                    { true, true, true }
+                    { false, true, false }, //   -
+                    { true, true, true }    // - - -
                 },
-                new bool[,] //S
+                new bool[,] // S
                 {
-                    { false, true, true },
-                    { true, true, false }
+                    { false, true, true },  //   - -
+                    { true, true, false }   // - - 
+                },  
+                new bool[,] // Z
+                {
+                    { true, true, false },  // - -   
+                    { false, true, true }   //   - -
                 },
-                new bool[,] //Z
+                new bool[,] // J
                 {
-                    { true, true, false },
-                    { false, true, true }
+                    { true, false, false },  // -    
+                    { true, true, true }     // - - -
                 },
-                new bool[,] //J
+                new bool[,] // L
                 {
-                    { true, false, false },
-                    { true, true, true }
-                },
-                new bool[,] //L
-                {
-                    { false, false, true },
-                    { true, true, true }
+                    { false, false, true }, //     -
+                    { true, true, true }    // - - -
                 }
             };
 
