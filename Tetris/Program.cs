@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Threading;
+﻿using System.Text.RegularExpressions;
 
 namespace Tetris
 {
-    class Program
+    internal class Program
     {
         //Settings
         static int TetrisRows = 20;
@@ -34,7 +30,7 @@ namespace Tetris
                 {
                     { false, true, true },  //   - -
                     { true, true, false }   // - - 
-                },  
+                },
                 new bool[,] // Z
                 {
                     { true, true, false },  // - -   
@@ -63,7 +59,7 @@ namespace Tetris
         static Random Random = new Random();
         static bool[,] TetrisField = new bool[TetrisRows, TetrisCols];
         static string ScoresFileName = "scores.txt";
-        
+
 
         static void Main(string[] args)
         {
@@ -88,39 +84,39 @@ namespace Tetris
                 // Read user input
                 if (Console.KeyAvailable)
                 {
-                      var key = Console.ReadKey();
-                      if(key.Key == ConsoleKey.Escape)
-                      {
-                          return;
-                      }
-                      if (key.Key == ConsoleKey.LeftArrow || key.Key == ConsoleKey.A)
-                      {
+                    var key = Console.ReadKey();
+                    if (key.Key == ConsoleKey.Escape)
+                    {
+                        return;
+                    }
+                    if (key.Key == ConsoleKey.LeftArrow || key.Key == ConsoleKey.A)
+                    {
                         if (CurrentFigureCol >= 1)
                         {
                             CurrentFigureCol--;
                         }
-                      }
-                      if (key.Key == ConsoleKey.RightArrow || key.Key == ConsoleKey.D)
-                      {
+                    }
+                    if (key.Key == ConsoleKey.RightArrow || key.Key == ConsoleKey.D)
+                    {
                         if (CurrentFigureCol < TetrisCols - CurrentFigure.GetLength(1))
                         {
                             CurrentFigureCol++;
                         }
-                      }
-                      if (key.Key == ConsoleKey.Spacebar || key.Key == ConsoleKey.W || key.Key == ConsoleKey.UpArrow)
-                      {
-                          // TODO: Implement 90-degree rotation of the current figure
-                      }
-                      if (key.Key == ConsoleKey.DownArrow || key.Key == ConsoleKey.S)
-                      {
-                          Frame = 1;
-                          Score++;
-                          CurrentFigureRow++;
-                      }                    
+                    }
+                    if (key.Key == ConsoleKey.Spacebar || key.Key == ConsoleKey.W || key.Key == ConsoleKey.UpArrow)
+                    {
+                        // TODO: Implement 90-degree rotation of the current figure
+                    }
+                    if (key.Key == ConsoleKey.DownArrow || key.Key == ConsoleKey.S)
+                    {
+                        Frame = 1;
+                        Score++;
+                        CurrentFigureRow++;
+                    }
                 }
 
                 // Update the game state
-                if(Frame % FramesToMoveFigure ==  0)
+                if (Frame % FramesToMoveFigure == 0)
                 {
                     CurrentFigureRow++;
                     Frame = 0;
@@ -155,7 +151,7 @@ namespace Tetris
                 DrawInfo();
                 DrawTetrisField();
                 DrawCurrentFigure();
-                
+
                 Thread.Sleep(40);
             }
         }
@@ -168,9 +164,9 @@ namespace Tetris
                 {
                     if (TetrisField[row, col])
                     {
-                        Write("*", row + 1, col + 1); 
+                        Write("*", row + 1, col + 1);
                     }
-                    
+
                 }
             }
         }
@@ -183,7 +179,7 @@ namespace Tetris
                 {
                     if (CurrentFigure[row, col])
                     {
-                        TetrisField[CurrentFigureRow + row, CurrentFigureCol + col] = true; 
+                        TetrisField[CurrentFigureRow + row, CurrentFigureCol + col] = true;
                     }
                 }
             }
@@ -248,19 +244,19 @@ namespace Tetris
         static void DrawBorder()
         {
             Console.SetCursorPosition(0, 0);
-            
+
             //First line
             string line = "╔";
             line += new string('═', TetrisCols);
-              //for (int i = 0; i < TetrisCols; i++)
-              //{
-              //    line += "═";
-              //}
+            //for (int i = 0; i < TetrisCols; i++)
+            //{
+            //    line += "═";
+            //}
             line += "╦";
             line += new string('═', InfoCols);
             line += "╗";
             Console.WriteLine(line);
-           
+
             //Middle line
             for (int i = 0; i < TetrisRows; i++)
             {
@@ -271,7 +267,7 @@ namespace Tetris
                 middleLine += "║";
                 Console.Write(middleLine);
             }
-            
+
             //End line
             string endLine = "╚";
             endLine += new string('═', TetrisCols);
@@ -281,7 +277,7 @@ namespace Tetris
             Console.Write(endLine);
         }
 
-        static void Write(string text,int row, int col,ConsoleColor color = ConsoleColor.Yellow)
+        static void Write(string text, int row, int col, ConsoleColor color = ConsoleColor.Yellow)
         {
             Console.ForegroundColor = color;
             Console.SetCursorPosition(col, row);
@@ -290,3 +286,4 @@ namespace Tetris
         }
     }
 }
+

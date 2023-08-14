@@ -25,3 +25,17 @@ C:\Users\David\Desktop\ДАВИД\GitDesktop\Tetris\Tetris\obj\Debug\netcoreapp3
 C:\Users\David\Desktop\ДАВИД\GitDesktop\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.dll
 C:\Users\David\Desktop\ДАВИД\GitDesktop\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.pdb
 C:\Users\David\Desktop\ДАВИД\GitDesktop\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.genruntimeconfig.cache
+D:\CODES\Tetris\Tetris\bin\Debug\netcoreapp3.1\Tetris.exe
+D:\CODES\Tetris\Tetris\bin\Debug\netcoreapp3.1\Tetris.deps.json
+D:\CODES\Tetris\Tetris\bin\Debug\netcoreapp3.1\Tetris.runtimeconfig.json
+D:\CODES\Tetris\Tetris\bin\Debug\netcoreapp3.1\Tetris.runtimeconfig.dev.json
+D:\CODES\Tetris\Tetris\bin\Debug\netcoreapp3.1\Tetris.dll
+D:\CODES\Tetris\Tetris\bin\Debug\netcoreapp3.1\Tetris.pdb
+D:\CODES\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.csproj.AssemblyReference.cache
+D:\CODES\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.GeneratedMSBuildEditorConfig.editorconfig
+D:\CODES\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.AssemblyInfoInputs.cache
+D:\CODES\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.AssemblyInfo.cs
+D:\CODES\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.csproj.CoreCompileInputs.cache
+D:\CODES\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.dll
+D:\CODES\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.pdb
+D:\CODES\Tetris\Tetris\obj\Debug\netcoreapp3.1\Tetris.genruntimeconfig.cache
